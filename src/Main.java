@@ -54,6 +54,21 @@ public class Main {
         return gamesCount;
     }
 
+    //HackerRank Service Lane problem solution
+    public static List<Integer> serviceLane(List<Integer> width, List<List<Integer>> cases) {
+        List<Integer> results = new ArrayList<>();
+        for (List<Integer> currentCase : cases) {
+            Integer minWidth = Integer.MAX_VALUE;
+            for (int i = currentCase.get(0); i <= currentCase.get(1); i++) {
+                if (width.get(i) < minWidth) {
+                    minWidth = width.get(i);
+                }
+            }
+            results.add(minWidth);
+        }
+        return results;
+    }
+
 
     public static void main(String[] args) {
 
@@ -64,9 +79,22 @@ public class Main {
 
 
 //        System.out.println(howManyGames(20, 3, 6, 70));
-        System.out.println(howManyGames(100, 1, 1, 99));
-        System.out.println(howManyGames(100, 19, 1, 180));
-        System.out.println(howManyGames(100, 12, 55, 95));
+//        System.out.println(howManyGames(100, 1, 1, 99));
+//        System.out.println(howManyGames(100, 19, 1, 180));
+//        System.out.println(howManyGames(100, 12, 55, 95));
+
+
+        Integer[] width = {2, 3, 1, 2, 3, 2, 3, 3};
+
+        List<List<Integer>> cases = new ArrayList<>();
+        cases.add(Arrays.asList(0, 3));
+        cases.add(Arrays.asList(4, 6));
+        cases.add(Arrays.asList(6, 7));
+        cases.add(Arrays.asList(3, 5));
+        cases.add(Arrays.asList(0, 7));
+
+
+        serviceLane(Arrays.asList(width), cases).forEach(System.out::println);
 
 
     }
