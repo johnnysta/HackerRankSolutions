@@ -70,6 +70,24 @@ public class Main {
     }
 
 
+    //HackerRank Lisa's Workbook problem solution
+    public static int workbook(int n, int k, List<Integer> arr) {
+        int currentPage = 0;
+        int specialProblemsCount = 0;
+        for (Integer totalProblemsInChapter : arr) {
+            for (int currentProblemIndex = 1; currentProblemIndex <= totalProblemsInChapter; currentProblemIndex++) {
+                if (currentProblemIndex % k == 1 || k == 1) {
+                    currentPage++;
+                }
+                if (currentPage == currentProblemIndex) {
+                    specialProblemsCount++;
+                }
+            }
+        }
+        return specialProblemsCount;
+    }
+
+
     public static void main(String[] args) {
 
 //        Integer[] inputArray1 = {3, 2, 1, 2, 3};
@@ -84,17 +102,23 @@ public class Main {
 //        System.out.println(howManyGames(100, 12, 55, 95));
 
 
-        Integer[] width = {2, 3, 1, 2, 3, 2, 3, 3};
+//        Integer[] width = {2, 3, 1, 2, 3, 2, 3, 3};
+//
+//        List<List<Integer>> cases = new ArrayList<>();
+//        cases.add(Arrays.asList(0, 3));
+//        cases.add(Arrays.asList(4, 6));
+//        cases.add(Arrays.asList(6, 7));
+//        cases.add(Arrays.asList(3, 5));
+//        cases.add(Arrays.asList(0, 7));
+//
+//        serviceLane(Arrays.asList(width), cases).forEach(System.out::println);
 
-        List<List<Integer>> cases = new ArrayList<>();
-        cases.add(Arrays.asList(0, 3));
-        cases.add(Arrays.asList(4, 6));
-        cases.add(Arrays.asList(6, 7));
-        cases.add(Arrays.asList(3, 5));
-        cases.add(Arrays.asList(0, 7));
 
+        Integer[] chapters = {4, 2, 6, 1, 10};
+        System.out.println(workbook(5, 3, Arrays.asList(chapters)));
 
-        serviceLane(Arrays.asList(width), cases).forEach(System.out::println);
+        Integer[] chapters2 = {100};
+        System.out.println(workbook(1, 1, Arrays.asList(chapters2)));
 
 
     }
