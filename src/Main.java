@@ -88,6 +88,23 @@ public class Main {
     }
 
 
+    //HackerRank Flatland Space Stations problem solution
+    static int flatlandSpaceStations(int n, int[] c) {
+        Arrays.sort(c);
+        int maxDistance = c[0];
+        int currentDistance = 0;
+        for (int i = 0; i < c.length - 1; i++) {
+            currentDistance = (c[i + 1] - c[i]) / 2;
+            maxDistance = Math.max(currentDistance, maxDistance);
+        }
+        if (n - 1 > c[c.length - 1]) {
+            currentDistance = ((n - 1) - c[c.length - 1]);
+            maxDistance = Math.max(currentDistance, maxDistance);
+        }
+        return maxDistance;
+    }
+
+
     public static void main(String[] args) {
 
 //        Integer[] inputArray1 = {3, 2, 1, 2, 3};
@@ -114,11 +131,24 @@ public class Main {
 //        serviceLane(Arrays.asList(width), cases).forEach(System.out::println);
 
 
-        Integer[] chapters = {4, 2, 6, 1, 10};
-        System.out.println(workbook(5, 3, Arrays.asList(chapters)));
+//        Integer[] chapters = {4, 2, 6, 1, 10};
+//        System.out.println(workbook(5, 3, Arrays.asList(chapters)));
+//
+//        Integer[] chapters2 = {100};
+//        System.out.println(workbook(1, 1, Arrays.asList(chapters2)));
 
-        Integer[] chapters2 = {100};
-        System.out.println(workbook(1, 1, Arrays.asList(chapters2)));
+
+        int[] spaceStations1 = {0, 1, 2, 3, 4, 5};
+        System.out.println(flatlandSpaceStations(6, spaceStations1));
+
+        int[] spaceStations2 = {0, 1, 2, 4, 3, 5};
+        System.out.println(flatlandSpaceStations(6, spaceStations2));
+
+        int[] spaceStations3 = {0, 4};
+        System.out.println(flatlandSpaceStations(5, spaceStations3));
+
+        int[] spaceStations4 = {13, 1, 11, 10, 6};
+        System.out.println(flatlandSpaceStations(20, spaceStations4));
 
 
     }
