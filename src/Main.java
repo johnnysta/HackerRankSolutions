@@ -104,6 +104,33 @@ public class Main {
         return maxDistance;
     }
 
+    //HackerRank Fair Rations problem solution
+    public static String fairRations(List<Integer> citizens) {
+        boolean neighborToBeIncremented = false;
+        int requiredLoaves = 0;
+        for (int i = 0; i < citizens.size(); i++) {
+            int currentCitizensLoaves = citizens.get(i);
+            if (neighborToBeIncremented) {
+                currentCitizensLoaves++;
+                citizens.set(i, currentCitizensLoaves);
+                requiredLoaves++;
+            }
+            if (currentCitizensLoaves % 2 == 1) {
+                currentCitizensLoaves++;
+                citizens.set(i, currentCitizensLoaves + 1);
+                requiredLoaves++;
+                neighborToBeIncremented = true;
+            } else {
+                neighborToBeIncremented = false;
+            }
+        }
+        if (neighborToBeIncremented) {
+            return "NO";
+        } else {
+            return String.valueOf(requiredLoaves);
+        }
+    }
+
 
     public static void main(String[] args) {
 
@@ -138,18 +165,24 @@ public class Main {
 //        System.out.println(workbook(1, 1, Arrays.asList(chapters2)));
 
 
-        int[] spaceStations1 = {0, 1, 2, 3, 4, 5};
-        System.out.println(flatlandSpaceStations(6, spaceStations1));
+//        int[] spaceStations1 = {0, 1, 2, 3, 4, 5};
+//        System.out.println(flatlandSpaceStations(6, spaceStations1));
+//
+//        int[] spaceStations2 = {0, 1, 2, 4, 3, 5};
+//        System.out.println(flatlandSpaceStations(6, spaceStations2));
+//
+//        int[] spaceStations3 = {0, 4};
+//        System.out.println(flatlandSpaceStations(5, spaceStations3));
+//
+//        int[] spaceStations4 = {13, 1, 11, 10, 6};
+//        System.out.println(flatlandSpaceStations(20, spaceStations4));
 
-        int[] spaceStations2 = {0, 1, 2, 4, 3, 5};
-        System.out.println(flatlandSpaceStations(6, spaceStations2));
 
-        int[] spaceStations3 = {0, 4};
-        System.out.println(flatlandSpaceStations(5, spaceStations3));
+        Integer[] citizens1 = {2, 3, 4, 5, 6};
+        System.out.println(fairRations(Arrays.asList(citizens1)));
 
-        int[] spaceStations4 = {13, 1, 11, 10, 6};
-        System.out.println(flatlandSpaceStations(20, spaceStations4));
-
+        Integer[] citizens2 = {1, 2};
+        System.out.println(fairRations(Arrays.asList(citizens2)));
 
     }
 }
