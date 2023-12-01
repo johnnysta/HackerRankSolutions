@@ -131,6 +131,35 @@ public class Main {
         }
     }
 
+    //HackerRank Manasa and Stones problem solution - with recursion (too slow)
+    public static List<Integer> stones1(int n, int a, int b) {
+        Set<Integer> results = new HashSet<>();
+        findResults(n, a, b, 0, results);
+        ArrayList<Integer> resultList = new ArrayList<>(results);
+        Collections.sort(resultList);
+        return resultList;
+    }
+
+    static void findResults(int i, int a, int b, int currentValue, Set<Integer> results) {
+        if (i > 1) {
+            findResults(i - 1, a, b, currentValue + a, results);
+            findResults(i - 1, a, b, currentValue + b, results);
+        } else {
+            results.add(currentValue);
+        }
+    }
+
+    //HackerRank Manasa and Stones problem solution
+    public static List<Integer> stones(int n, int a, int b) {
+        Set<Integer> results = new HashSet<>();
+        for (int i = 0; i < n; i++) {
+            results.add(i * a + (n - i - 1) * b);
+        }
+        ArrayList<Integer> resultList = new ArrayList<>(results);
+        Collections.sort(resultList);
+        return resultList;
+    }
+
 
     public static void main(String[] args) {
 
@@ -178,11 +207,18 @@ public class Main {
 //        System.out.println(flatlandSpaceStations(20, spaceStations4));
 
 
-        Integer[] citizens1 = {2, 3, 4, 5, 6};
-        System.out.println(fairRations(Arrays.asList(citizens1)));
+//        Integer[] citizens1 = {2, 3, 4, 5, 6};
+//        System.out.println(fairRations(Arrays.asList(citizens1)));
+//
+//        Integer[] citizens2 = {1, 2};
+//        System.out.println(fairRations(Arrays.asList(citizens2)));
 
-        Integer[] citizens2 = {1, 2};
-        System.out.println(fairRations(Arrays.asList(citizens2)));
+
+//        System.out.println(stones(3, 1, 2));
+//        System.out.println(stones(4, 10, 100));
+        System.out.println(stones(12, 73, 82));
+        System.out.println(stones(58, 69, 24));
+
 
     }
 }
