@@ -161,6 +161,36 @@ public class Main {
     }
 
 
+    //HackerRank Ice Cream Parlor problem solution - to slow for bigger inputs
+    public static void whatFlavors1(List<Integer> cost, int money) {
+        for (int i = 0; i < cost.size(); i++) {
+            for (int j = i + 1; j < cost.size(); j++) {
+                if (cost.get(i) + cost.get(j) == money) {
+                    System.out.println((i + 1) + " " + (j + 1));
+                    break;
+                }
+            }
+        }
+    }
+
+    //HackerRank Ice Cream Parlor problem solution - fast enough
+    public static void whatFlavors(List<Integer> cost, int money) {
+        HashMap<Integer, Integer> costsMap = new HashMap<>();
+        for (int i = 0; i < cost.size(); i++) {
+            costsMap.put(cost.get(i), i);
+        }
+        int firstIndex = -1;
+        Integer otherIndex = -1;
+        for (int i = 0; i < cost.size(); i++) {
+            firstIndex = i;
+            if (((otherIndex = costsMap.get(money - cost.get(i))) != null) && otherIndex != firstIndex) {
+                break;
+            }
+        }
+        System.out.println((firstIndex + 1) + " " + (otherIndex + 1));
+    }
+
+
     public static void main(String[] args) {
 
 //        Integer[] inputArray1 = {3, 2, 1, 2, 3};
@@ -216,8 +246,15 @@ public class Main {
 
 //        System.out.println(stones(3, 1, 2));
 //        System.out.println(stones(4, 10, 100));
-        System.out.println(stones(12, 73, 82));
-        System.out.println(stones(58, 69, 24));
+//        System.out.println(stones(12, 73, 82));
+//        System.out.println(stones(58, 69, 24));
+
+        Integer[] cost1 = {1, 4, 5, 3, 2};
+        whatFlavors(Arrays.asList(cost1), 4);
+        Integer[] cost2 = {2, 2, 4, 3};
+        whatFlavors(Arrays.asList(cost2), 4);
+        Integer[] cost3 = {4, 3, 2, 5, 7};
+        whatFlavors(Arrays.asList(cost3), 8);
 
 
     }
