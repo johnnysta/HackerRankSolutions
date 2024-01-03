@@ -191,6 +191,17 @@ public class Main {
     }
 
 
+    //HackerRank Flipping bits problem solution
+    public static long flippingBits(long n) {
+        long result = 0;
+        for (int i = 0; i < 32; i++) {
+            result += Math.pow(2, i) * ((n % 2 == 1) ? 0 : 1);
+            n = n / 2;
+        }
+        return result;
+    }
+
+
     public static void main(String[] args) {
 
 //        Integer[] inputArray1 = {3, 2, 1, 2, 3};
@@ -249,13 +260,15 @@ public class Main {
 //        System.out.println(stones(12, 73, 82));
 //        System.out.println(stones(58, 69, 24));
 
-        Integer[] cost1 = {1, 4, 5, 3, 2};
-        whatFlavors(Arrays.asList(cost1), 4);
-        Integer[] cost2 = {2, 2, 4, 3};
-        whatFlavors(Arrays.asList(cost2), 4);
-        Integer[] cost3 = {4, 3, 2, 5, 7};
-        whatFlavors(Arrays.asList(cost3), 8);
+//        Integer[] cost1 = {1, 4, 5, 3, 2};
+//        whatFlavors(Arrays.asList(cost1), 4);
+//        Integer[] cost2 = {2, 2, 4, 3};
+//        whatFlavors(Arrays.asList(cost2), 4);
+//        Integer[] cost3 = {4, 3, 2, 5, 7};
+//        whatFlavors(Arrays.asList(cost3), 8);
 
+
+        System.out.println(flippingBits(0));
 
     }
 }
