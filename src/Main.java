@@ -201,6 +201,18 @@ public class Main {
         return result;
     }
 
+    //HackerRank Time Complexity: Primality problem solution
+    public static String primality(int n) {
+        if (n == 0 || n == 1) {
+            return "Not prime";
+        }
+        for (int i = 2; i < n; i++) {
+            if (n % i == 0) {
+                return "Not prime";
+            }
+        }
+        return "Prime";
+    }
 
     public static void main(String[] args) {
 
@@ -268,7 +280,9 @@ public class Main {
 //        whatFlavors(Arrays.asList(cost3), 8);
 
 
-        System.out.println(flippingBits(0));
+//        System.out.println(flippingBits(0));
+
+        System.out.println(primality(986939521));
 
     }
 }
