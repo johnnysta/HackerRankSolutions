@@ -214,6 +214,60 @@ public class Main {
         return "Prime";
     }
 
+    //HackerRank Friend Circle Queries problem solution
+    static int[] maxCircle(int[][] queries) {
+        int[] result = new int[queries.length];
+        int maxCircle = 2;
+        List<HashSet<Integer>> friendsCircles = new ArrayList<>();
+        for (int i = 0; i < queries.length; i++) {
+            int firstPerson = queries[i][0];
+            int secondPerson = queries[i][1];
+            int firstPersonsFriendsIndex = findFriendsCircle(friendsCircles, firstPerson);
+            int secondPersonsFriendsIndex = findFriendsCircle(friendsCircles, secondPerson);
+            if (firstPersonsFriendsIndex != -1) {
+                if (secondPersonsFriendsIndex != -1) {
+                    if (firstPersonsFriendsIndex != secondPersonsFriendsIndex) {
+                        friendsCircles.get(firstPersonsFriendsIndex).addAll(friendsCircles.get(secondPersonsFriendsIndex));
+                        int currentSetSize = friendsCircles.get(firstPersonsFriendsIndex).size();
+                        if (currentSetSize > maxCircle) {
+                            maxCircle = currentSetSize;
+                        }
+                        friendsCircles.remove(secondPersonsFriendsIndex);
+                    }
+                } else {
+                    friendsCircles.get(firstPersonsFriendsIndex).add(secondPerson);
+                    int currentSetSize = friendsCircles.get(firstPersonsFriendsIndex).size();
+                    if (currentSetSize > maxCircle) {
+                        maxCircle = currentSetSize;
+                    }
+
+                }
+            } else {
+                if (secondPersonsFriendsIndex != -1) {
+                    friendsCircles.get(secondPersonsFriendsIndex).add(firstPerson);
+                    int currentSetSize = friendsCircles.get(secondPersonsFriendsIndex).size();
+                    if (currentSetSize > maxCircle) {
+                        maxCircle = currentSetSize;
+                    }
+                } else {
+                    friendsCircles.add(new HashSet<>(Arrays.asList(firstPerson, secondPerson)));
+                }
+            }
+            result[i] = maxCircle;
+        }
+        return result;
+    }
+
+    private static int findFriendsCircle(List<HashSet<Integer>> friendsCircles, int number) {
+        for (int i = 0; i < friendsCircles.size(); i++) {
+            if (friendsCircles.get(i).contains(number)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
     public static void main(String[] args) {
 
 //        Integer[] inputArray1 = {3, 2, 1, 2, 3};
@@ -282,7 +336,20 @@ public class Main {
 
 //        System.out.println(flippingBits(0));
 
-        System.out.println(primality(986939521));
+//        System.out.println(primality(986939521));
+
+
+//        int[][] inputArray = {{1, 2}, {1, 3}};
+//        int[][] inputArray = {{1000000000, 23},{11, 3778}, {7, 47}, {11, 1000000000}};
+//        int[][] inputArray = {{1, 2}, {3, 4}, {1, 3}, {5, 7}, {5, 6}, {7, 4}};
+        int[][] inputArray = {{78, 72}, {67, 74}, {65, 57}, {65, 52}, {70, 55}, {74, 70}, {58, 51}, {70, 76},
+                {69, 55}, {64, 78}, {67, 72}, {69, 63}, {77, 59}, {69, 64}, {70, 80}, {66, 67},
+                {71, 52}, {60, 77}, {80, 66}, {70, 61}};
+        int[] result = maxCircle(inputArray);
+        for (int i : result) {
+            System.out.println(i);
+        }
+
 
     }
 }
