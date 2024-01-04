@@ -227,7 +227,9 @@ public class Main {
             if (firstPersonsFriendsIndex != -1) {
                 if (secondPersonsFriendsIndex != -1) {
                     if (firstPersonsFriendsIndex != secondPersonsFriendsIndex) {
-                        friendsCircles.get(firstPersonsFriendsIndex).addAll(friendsCircles.get(secondPersonsFriendsIndex));
+//                        friendsCircles.get(firstPersonsFriendsIndex).addAll(friendsCircles.get(secondPersonsFriendsIndex));
+                        friendsCircles.set(firstPersonsFriendsIndex, optimizedUnion(friendsCircles.get(firstPersonsFriendsIndex),
+                                friendsCircles.get(secondPersonsFriendsIndex)));
                         int currentSetSize = friendsCircles.get(firstPersonsFriendsIndex).size();
                         if (currentSetSize > maxCircle) {
                             maxCircle = currentSetSize;
@@ -258,6 +260,16 @@ public class Main {
         return result;
     }
 
+    private static HashSet<Integer> optimizedUnion(HashSet<Integer> first, HashSet<Integer> second) {
+        if (first.size() >= second.size()) {
+            first.addAll(second);
+            return first;
+        } else {
+            second.addAll(first);
+            return second;
+        }
+    }
+
     private static int findFriendsCircle(List<HashSet<Integer>> friendsCircles, int number) {
         for (int i = 0; i < friendsCircles.size(); i++) {
             if (friendsCircles.get(i).contains(number)) {
@@ -265,6 +277,41 @@ public class Main {
             }
         }
         return -1;
+    }
+
+
+    //HackerRank Friend Circle Queries problem solution - better time complexity
+    static int[] maxCircle2(int[][] queries) {
+        int[] result = new int[queries.length];
+        int maxCircle = 0;
+        Map<Integer, HashSet<Integer>> friendsCircles = new HashMap<>();
+        for (int i = 0; i < queries.length; i++) {
+            int firstPerson = queries[i][0];
+            int secondPerson = queries[i][1];
+            HashSet<Integer> firstPersonsSet = findFriendsSet(friendsCircles, firstPerson);
+            HashSet<Integer> secondPersonsSet = findFriendsSet(friendsCircles, secondPerson);
+            if (firstPersonsSet != secondPersonsSet) {
+                firstPersonsSet.addAll(secondPersonsSet);
+                for (Integer person : secondPersonsSet) {
+                    friendsCircles.put(person, firstPersonsSet);
+                }
+                if (maxCircle < firstPersonsSet.size()) {
+                    maxCircle = firstPersonsSet.size();
+                }
+            }
+            result[i] = maxCircle;
+        }
+        return result;
+    }
+
+    private static HashSet<Integer> findFriendsSet(Map<Integer, HashSet<Integer>> friendsCircles, int person) {
+        HashSet<Integer> friendsSet = friendsCircles.get(person);
+        if (friendsSet == null) {
+            friendsSet = new HashSet<>();
+            friendsSet.add(person);
+            friendsCircles.put(person, friendsSet);
+        }
+        return friendsSet;
     }
 
 
@@ -345,7 +392,7 @@ public class Main {
         int[][] inputArray = {{78, 72}, {67, 74}, {65, 57}, {65, 52}, {70, 55}, {74, 70}, {58, 51}, {70, 76},
                 {69, 55}, {64, 78}, {67, 72}, {69, 63}, {77, 59}, {69, 64}, {70, 80}, {66, 67},
                 {71, 52}, {60, 77}, {80, 66}, {70, 61}};
-        int[] result = maxCircle(inputArray);
+        int[] result = maxCircle2(inputArray);
         for (int i : result) {
             System.out.println(i);
         }
