@@ -315,6 +315,39 @@ public class Main {
     }
 
 
+    //HackerRank Happy Ladybugs problem solution
+    public static String happyLadybugs(String b) {
+        boolean hasSpace = false;
+        boolean isHappyInitially = true;
+        String stringToCheck = "*" + b + "*";
+        Map<Character, Integer> ladybugMap = new HashMap<>();
+
+        for (int i = 1; i < stringToCheck.length() - 1; i++) {
+            Integer prevValue = ladybugMap.put(stringToCheck.charAt(i), 1);
+            if (prevValue != null) {
+                ladybugMap.put(stringToCheck.charAt(i), prevValue + 1);
+            }
+            if (isHappyInitially
+                    && stringToCheck.charAt(i - 1) != stringToCheck.charAt(i)
+                    && stringToCheck.charAt(i) != stringToCheck.charAt(i + 1)) {
+                isHappyInitially = false;
+            }
+        }
+
+        if (isHappyInitially) return "YES";
+
+        for (Character key : ladybugMap.keySet()) {
+            if (ladybugMap.get(key) == 1 && !key.equals('_')) {
+                return "NO";
+            } else if (key.equals('_')) {
+                hasSpace = true;
+            }
+        }
+
+        return (hasSpace) ? "YES" : "NO";
+    }
+
+
     public static void main(String[] args) {
 
 //        Integer[] inputArray1 = {3, 2, 1, 2, 3};
@@ -389,14 +422,20 @@ public class Main {
 //        int[][] inputArray = {{1, 2}, {1, 3}};
 //        int[][] inputArray = {{1000000000, 23},{11, 3778}, {7, 47}, {11, 1000000000}};
 //        int[][] inputArray = {{1, 2}, {3, 4}, {1, 3}, {5, 7}, {5, 6}, {7, 4}};
-        int[][] inputArray = {{78, 72}, {67, 74}, {65, 57}, {65, 52}, {70, 55}, {74, 70}, {58, 51}, {70, 76},
-                {69, 55}, {64, 78}, {67, 72}, {69, 63}, {77, 59}, {69, 64}, {70, 80}, {66, 67},
-                {71, 52}, {60, 77}, {80, 66}, {70, 61}};
-        int[] result = maxCircle2(inputArray);
-        for (int i : result) {
-            System.out.println(i);
-        }
+//        int[][] inputArray = {{78, 72}, {67, 74}, {65, 57}, {65, 52}, {70, 55}, {74, 70}, {58, 51}, {70, 76},
+//                {69, 55}, {64, 78}, {67, 72}, {69, 63}, {77, 59}, {69, 64}, {70, 80}, {66, 67},
+//                {71, 52}, {60, 77}, {80, 66}, {70, 61}};
+//        int[] result = maxCircle2(inputArray);
+//        for (int i : result) {
+//            System.out.println(i);
+//        }
 
+        System.out.println(happyLadybugs("AABBC"));
+        System.out.println(happyLadybugs("AABBC_C"));
+        System.out.println(happyLadybugs("_"));
+        System.out.println(happyLadybugs("DD__FQ_QQF"));
+        System.out.println(happyLadybugs("AABCBC"));
+        System.out.println(happyLadybugs("AABBCC"));
 
     }
 }
