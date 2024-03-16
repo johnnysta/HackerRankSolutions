@@ -348,6 +348,19 @@ public class Main {
     }
 
 
+    //HackerRank Strange Counter problem solution
+    public static long strangeCounter(long t) {
+        long cycleMax = 3;
+        long timeCounter = 0;
+        while (timeCounter < t) {
+            timeCounter += cycleMax;
+            cycleMax = cycleMax * 2;
+        }
+        long remainingTime = t - (timeCounter - cycleMax / 2);
+        return cycleMax / 2 - remainingTime + 1;
+    }
+
+
     public static void main(String[] args) {
 
 //        Integer[] inputArray1 = {3, 2, 1, 2, 3};
@@ -430,12 +443,14 @@ public class Main {
 //            System.out.println(i);
 //        }
 
-        System.out.println(happyLadybugs("AABBC"));
-        System.out.println(happyLadybugs("AABBC_C"));
-        System.out.println(happyLadybugs("_"));
-        System.out.println(happyLadybugs("DD__FQ_QQF"));
-        System.out.println(happyLadybugs("AABCBC"));
-        System.out.println(happyLadybugs("AABBCC"));
+//        System.out.println(happyLadybugs("AABBC"));
+//        System.out.println(happyLadybugs("AABBC_C"));
+//        System.out.println(happyLadybugs("_"));
+//        System.out.println(happyLadybugs("DD__FQ_QQF"));
+//        System.out.println(happyLadybugs("AABCBC"));
+//        System.out.println(happyLadybugs("AABBCC"));
+
+        System.out.println(strangeCounter(1));
 
     }
 }
