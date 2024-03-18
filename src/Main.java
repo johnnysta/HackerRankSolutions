@@ -1,5 +1,6 @@
 import java.util.*;
 
+
 public class Main {
 
 
@@ -361,6 +362,64 @@ public class Main {
     }
 
 
+    //HackerRank Super Reduced String problem solution
+    public static String superReducedString(String s) {
+        int sameStartIndex = findAdjacentSameChars(s);
+        while (sameStartIndex != -1 && s.length() > 0) {
+            s = replaceToNothing(s, sameStartIndex);
+            sameStartIndex = findAdjacentSameChars(s);
+        }
+        return (s.length() > 0) ? s : "Empty String";
+    }
+
+    private static String replaceToNothing(String s, int sameStartIndex) {
+        String reducedString = ((sameStartIndex > 0) ? s.substring(0, sameStartIndex) : "")
+                + ((sameStartIndex + 2 <= s.length() - 1) ? s.substring(sameStartIndex + 2) : "");
+        return reducedString;
+    }
+
+    private static int findAdjacentSameChars(String s) {
+        if (s.length() < 2) return -1;
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (s.charAt(i) == s.charAt(i + 1)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
+    //HackerRank Encryption problem solution
+    public static String encryption(String s) {
+        String cleanedInput = s.replaceAll(" ", "");
+        int length = cleanedInput.length();
+        double lengthSqrt = Math.sqrt(length);
+        int lowValue = (int) lengthSqrt;
+        int upperValue = (lengthSqrt % 1 == 0) ? lowValue : lowValue + 1;
+        int columns = upperValue;
+        int rows = (lowValue * upperValue >= length) ? lowValue : upperValue;
+        char[][] charArray = new char[rows][columns];
+
+        for (int y = 0; y < rows; y++) {
+            for (int x = 0; x < columns; x++) {
+                charArray[y][x] = (cleanedInput.length() > y * columns + x) ? cleanedInput.charAt(y * columns + x) : ' ';
+            }
+        }
+
+        StringBuilder encryptBuilder = new StringBuilder();
+        for (int x = 0; x < columns; x++) {
+            for (int y = 0; y < rows; y++) {
+                if (charArray[y][x] != ' ') {
+                    encryptBuilder.append(charArray[y][x]);
+                }
+            }
+            encryptBuilder.append(" ");
+        }
+
+        return encryptBuilder.toString();
+    }
+
+
     public static void main(String[] args) {
 
 //        Integer[] inputArray1 = {3, 2, 1, 2, 3};
@@ -450,7 +509,13 @@ public class Main {
 //        System.out.println(happyLadybugs("AABCBC"));
 //        System.out.println(happyLadybugs("AABBCC"));
 
-        System.out.println(strangeCounter(1));
+//        System.out.println(strangeCounter(1));
 
+
+//        System.out.println(superReducedString("baab"));
+
+        System.out.println(encryption("have a nice day"));
+        System.out.println(encryption("feed the dog"));
+        System.out.println(encryption("chillout"));
     }
 }
