@@ -419,6 +419,27 @@ public class Main {
         return encryptBuilder.toString();
     }
 
+    //HackerRank The Power Sum problem solution
+    public static int powerSum(int X, int N) {
+        int numOfWays = 0;
+        int maxBase = (int) Math.pow(X, (1.0 / N));
+        long maskingNum = (long) Math.pow(2, maxBase);
+        for (long i = 1; i <= maskingNum; i++) {
+            int currentSum = 0;
+            for (int j = maxBase; j >= 1; j--) {
+                long bit = (i >> (j - 1)) & 1;
+                currentSum += Math.pow((bit * j), N);
+                if (currentSum > X) {
+                    break;
+                }
+            }
+            if (currentSum == X) {
+                numOfWays++;
+            }
+        }
+        return numOfWays;
+    }
+
 
     public static void main(String[] args) {
 
@@ -514,8 +535,13 @@ public class Main {
 
 //        System.out.println(superReducedString("baab"));
 
-        System.out.println(encryption("have a nice day"));
-        System.out.println(encryption("feed the dog"));
-        System.out.println(encryption("chillout"));
+//        System.out.println(encryption("have a nice day"));
+//        System.out.println(encryption("feed the dog"));
+//        System.out.println(encryption("chillout"));
+
+
+        System.out.println(powerSum(10, 2));
+        System.out.println(powerSum(25, 2));
+        System.out.println(powerSum(1000, 2));
     }
 }
