@@ -420,6 +420,7 @@ public class Main {
     }
 
     //HackerRank The Power Sum problem solution
+    //Iterating through the possible sum combinations with the help of a binary masking number (its value: 2^maxBase)
     public static int powerSum(int X, int N) {
         int numOfWays = 0;
         int maxBase = (int) Math.pow(X, (1.0 / N));
@@ -440,6 +441,43 @@ public class Main {
         return numOfWays;
     }
 
+
+    //Sample for a recursive iteration for all possible values of a binary number
+    public static void iterateBinary(int N, int index, String prefix) {
+        // Base case: if we have generated N bits, print the binary number
+        if (index == N) {
+            System.out.println(prefix);
+            return;
+        }
+        // Recursive case: append 0 or 1 to the prefix and recursively generate the rest of the bits
+        iterateBinary(N, index + 1, prefix + "0");
+        iterateBinary(N, index + 1, prefix + "1");
+    }
+
+
+    //HackerRank The Power Sum problem solution with recursion
+    //(iterating through the possible sum combinations with the help of a recursive function)
+    public static int powerSum2(int X, int N) {
+        int numOfSolutions = 0;
+        int maxBase = (int) Math.pow(X, (1.0 / N));
+        return powerSumRecursion(maxBase, N, 0, numOfSolutions, 0, X);
+    }
+
+    public static int powerSumRecursion(int range, int index, int currentBase, int numOfSolutions, int currentSum, int desiredSum) {
+        if (currentSum > desiredSum) {
+            return numOfSolutions;
+        }
+        if (currentBase == range) {
+            if (currentSum == desiredSum) {
+                numOfSolutions++;
+            }
+            return numOfSolutions;
+        }
+        numOfSolutions = powerSumRecursion(range, index, currentBase + 1, numOfSolutions, currentSum, desiredSum);
+        numOfSolutions = powerSumRecursion(range, index, currentBase + 1, numOfSolutions,
+                currentSum + (int) Math.pow(currentBase + 1, index), desiredSum);
+        return numOfSolutions;
+    }
 
     public static void main(String[] args) {
 
@@ -540,8 +578,18 @@ public class Main {
 //        System.out.println(encryption("chillout"));
 
 
-        System.out.println(powerSum(10, 2));
-        System.out.println(powerSum(25, 2));
-        System.out.println(powerSum(1000, 2));
+//        System.out.println(powerSum(10, 2));
+//        System.out.println(powerSum(25, 2));
+//        System.out.println(powerSum(100, 3));
+//        System.out.println(powerSum(400, 2));
+
+
+//        iterateBinary(31, 0, "");
+
+        System.out.println(powerSum2(10, 2));
+        System.out.println(powerSum2(25, 2));
+        System.out.println(powerSum(100, 3));
+        System.out.println(powerSum(400, 2));
+
     }
 }
