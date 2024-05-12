@@ -479,6 +479,17 @@ public class Main {
         return numOfSolutions;
     }
 
+    //HackerRank CamelCase problem solution
+    public static int camelcase(String s) {
+        int numOfWords = 1;
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i) >= 'A' && s.charAt(i) <= 'Z') {
+                numOfWords++;
+            }
+        }
+        return numOfWords;
+    }
+
     public static void main(String[] args) {
 
 //        Integer[] inputArray1 = {3, 2, 1, 2, 3};
@@ -586,10 +597,12 @@ public class Main {
 
 //        iterateBinary(31, 0, "");
 
-        System.out.println(powerSum2(10, 2));
-        System.out.println(powerSum2(25, 2));
-        System.out.println(powerSum(100, 3));
-        System.out.println(powerSum(400, 2));
+//        System.out.println(powerSum2(10, 2));
+//        System.out.println(powerSum2(25, 2));
+//        System.out.println(powerSum(100, 3));
+//        System.out.println(powerSum(400, 2));
+
+        System.out.println(camelcase("saveChangesInTheEditor"));
 
     }
 }
