@@ -490,6 +490,41 @@ public class Main {
         return numOfWords;
     }
 
+    //HackerRank Strong Password problem solution with sets
+    public static int minimumNumber(int n, String password) {
+        Set<Character> numbersSet = Set.of('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+        Set<Character> lowerCaseSet = Set.of('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
+        Set<Character> upperCaseSet = Set.of('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+        Set<Character> specialCharsSet = Set.of('!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+');
+        int numOfNumbers = 0;
+        int numOfLowerCases = 0;
+        int numOfUpperCases = 0;
+        int numOfSpecials = 0;
+
+        for (int i = 0; i < password.length(); i++) {
+            char currChar = password.charAt(i);
+            numOfNumbers += numbersSet.contains(currChar) ? 1 : 0;
+            numOfLowerCases += lowerCaseSet.contains(currChar) ? 1 : 0;
+            numOfUpperCases += upperCaseSet.contains(currChar) ? 1 : 0;
+            numOfSpecials += specialCharsSet.contains(currChar) ? 1 : 0;
+        }
+
+        int charsRequired = 0;
+        charsRequired += (numOfNumbers == 0) ? 1 : 0;
+        charsRequired += (numOfLowerCases == 0) ? 1 : 0;
+        charsRequired += (numOfUpperCases == 0) ? 1 : 0;
+        charsRequired += (numOfSpecials == 0) ? 1 : 0;
+
+        int charsRequiredByNumber = 6 - n;
+
+        if ((charsRequiredByNumber) > 0) {
+            return (charsRequiredByNumber > charsRequired) ? charsRequiredByNumber : charsRequired;
+        } else {
+            return charsRequired;
+        }
+    }
+
+
     public static void main(String[] args) {
 
 //        Integer[] inputArray1 = {3, 2, 1, 2, 3};
@@ -602,7 +637,12 @@ public class Main {
 //        System.out.println(powerSum(100, 3));
 //        System.out.println(powerSum(400, 2));
 
-        System.out.println(camelcase("saveChangesInTheEditor"));
+//        System.out.println(camelcase("saveChangesInTheEditor"));
 
+
+        System.out.println(minimumNumber(11, "#HackerRank"));
+        System.out.println(minimumNumber(3, "Ab1"));
+        System.out.println(minimumNumber(5, "2bbbb"));
+        System.out.println(minimumNumber(5, "2bb#A"));
     }
 }
