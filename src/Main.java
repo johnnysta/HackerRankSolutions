@@ -524,6 +524,19 @@ public class Main {
         }
     }
 
+    //HackerRank Big Sorting problem solution
+    public static List<String> bigSorting(List<String> unsorted) {
+        unsorted.sort((o1, o2) -> {
+            if (o1.length() > o2.length()) {
+                return 1;
+            } else if (o2.length() > o1.length()) {
+                return -1;
+            }
+            return o1.compareTo(o2);
+        });
+        return unsorted;
+    }
+
 
     public static void main(String[] args) {
 
@@ -640,9 +653,22 @@ public class Main {
 //        System.out.println(camelcase("saveChangesInTheEditor"));
 
 
-        System.out.println(minimumNumber(11, "#HackerRank"));
-        System.out.println(minimumNumber(3, "Ab1"));
-        System.out.println(minimumNumber(5, "2bbbb"));
-        System.out.println(minimumNumber(5, "2bb#A"));
+//        System.out.println(minimumNumber(11, "#HackerRank"));
+//        System.out.println(minimumNumber(3, "Ab1"));
+//        System.out.println(minimumNumber(5, "2bbbb"));
+//        System.out.println(minimumNumber(5, "2bb#A"));
+
+
+        String[] numstringArray1 = {"6", "31415926535897932384626433832795", "1", "3", "10", "3", "5"};
+        for (String s : bigSorting(Arrays.asList(numstringArray1))) {
+            System.out.println(s);
+        }
+
+        String[] numstringArray2 = {"1", "2", "100", "12303479849857341718340192371", "3084193741082937", "3084193741082938", "111", "200"};
+        for (String s : bigSorting(Arrays.asList(numstringArray2))) {
+            System.out.println(s);
+        }
+
+
     }
 }
