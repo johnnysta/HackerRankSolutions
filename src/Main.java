@@ -538,6 +538,43 @@ public class Main {
     }
 
 
+    //HackerRank The Time in Words problem solution
+    static String timeInWords(int h, int m) {
+        StringBuilder builder = new StringBuilder();
+
+        String[] hours = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
+                "twelve"};
+        String[] minutes = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
+                "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty",
+                "twenty one", "twenty two", "twenty three", "twenty four", "twenty five", "twenty six", "twenty seven",
+                "twenty eight", "twenty nine", "thirty"};
+
+        if (m > 30) {
+            h++;
+        }
+        builder.append(hours[h - 1]);
+
+        if (m == 0)
+            builder.append(" o' clock");
+        else if (m == 1)
+            builder.insert(0, minutes[m - 1] + " minute past ");
+        else if (m == 15)
+            builder.insert(0, "quarter past ");
+        else if (m < 30)
+            builder.insert(0, minutes[m - 1] + " minutes past ");
+        else if (m == 30)
+            builder.insert(0, "half past ");
+        else if (m == 45)
+            builder.insert(0, "quarter to ");
+        else if (m > 30 && m < 59)
+            builder.insert(0, minutes[60 - m - 1] + " minutes to ");
+        else
+            builder.insert(0, minutes[60 - m - 1] + " minute to ");
+
+        return builder.toString();
+    }
+
+
     public static void main(String[] args) {
 
 //        Integer[] inputArray1 = {3, 2, 1, 2, 3};
@@ -659,15 +696,29 @@ public class Main {
 //        System.out.println(minimumNumber(5, "2bb#A"));
 
 
-        String[] numstringArray1 = {"6", "31415926535897932384626433832795", "1", "3", "10", "3", "5"};
-        for (String s : bigSorting(Arrays.asList(numstringArray1))) {
-            System.out.println(s);
-        }
+//        String[] numstringArray1 = {"6", "31415926535897932384626433832795", "1", "3", "10", "3", "5"};
+//        for (String s : bigSorting(Arrays.asList(numstringArray1))) {
+//            System.out.println(s);
+//        }
+//
+//        String[] numstringArray2 = {"1", "2", "100", "12303479849857341718340192371", "3084193741082937", "3084193741082938", "111", "200"};
+//        for (String s : bigSorting(Arrays.asList(numstringArray2))) {
+//            System.out.println(s);
+//        }
 
-        String[] numstringArray2 = {"1", "2", "100", "12303479849857341718340192371", "3084193741082937", "3084193741082938", "111", "200"};
-        for (String s : bigSorting(Arrays.asList(numstringArray2))) {
-            System.out.println(s);
-        }
+        System.out.println(timeInWords(3, 0));
+        System.out.println(timeInWords(3, 15));
+        System.out.println(timeInWords(3, 45));
+        System.out.println(timeInWords(3, 1));
+        System.out.println(timeInWords(3, 59));
+        System.out.println(timeInWords(3, 10));
+
+        System.out.println(timeInWords(3, 22));
+        System.out.println(timeInWords(3, 55));
+        System.out.println(timeInWords(3, 38));
+        System.out.println(timeInWords(3, 47));
+        System.out.println(timeInWords(3, 59));
+        System.out.println(timeInWords(7, 29));
 
 
     }
