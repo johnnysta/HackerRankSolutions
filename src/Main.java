@@ -574,6 +574,55 @@ public class Main {
         return builder.toString();
     }
 
+    //HackerRank Two Characters problem solution
+    public static int alternate(String s) {
+
+        //count the characters, and store the values in an array
+        int[] charCounts = new int[('z' - 'a') + 1];
+        for (int i = 0; i < s.length(); i++) {
+            charCounts[s.charAt(i) - 'a']++;
+        }
+
+        //create possible char combinations
+        ArrayList<String> charCombinations = new ArrayList<>();
+        for (int i = 0; i < charCounts.length - 1; i++) {
+            for (int j = i + 1; j < charCounts.length; j++) {
+                if (charCounts[i] > 0 && charCounts[j] > 0 && Math.abs(charCounts[i] - charCounts[j]) <= 1) {
+                    charCombinations.add(Character.toString('a' + i) + Character.toString('a' + j));
+                }
+            }
+        }
+
+        //removing all unnecessary chars from testString
+        int maxLength = 0;
+
+        for (String charCombination : charCombinations) {
+            String testString = s;
+
+            for (int i = 0; i < charCounts.length; i++) {
+                if ((charCounts[i] > 0) && charCombination.indexOf((char) ('a' + i)) == -1) {
+                    testString = testString.replaceAll(String.valueOf((char) ('a' + i)), "");
+                }
+            }
+
+            if (checkAlternation(charCombination, testString)) {
+                maxLength = Math.max(maxLength, testString.length());
+            }
+        }
+        return maxLength;
+    }
+
+    public static boolean checkAlternation(String charCombination, String testString) {
+        char curChar = testString.charAt(0);
+        for (int i = 1; i < testString.length(); i++) {
+            if (curChar == testString.charAt(i)) {
+                return false;
+            }
+            curChar = testString.charAt(i);
+        }
+        return true;
+    }
+
 
     public static void main(String[] args) {
 
@@ -705,21 +754,26 @@ public class Main {
 //        for (String s : bigSorting(Arrays.asList(numstringArray2))) {
 //            System.out.println(s);
 //        }
+//
+//        System.out.println(timeInWords(3, 0));
+//        System.out.println(timeInWords(3, 15));
+//        System.out.println(timeInWords(3, 45));
+//        System.out.println(timeInWords(3, 1));
+//        System.out.println(timeInWords(3, 59));
+//        System.out.println(timeInWords(3, 10));
+//
+//        System.out.println(timeInWords(3, 22));
+//        System.out.println(timeInWords(3, 55));
+//        System.out.println(timeInWords(3, 38));
+//        System.out.println(timeInWords(3, 47));
+//        System.out.println(timeInWords(3, 59));
+//        System.out.println(timeInWords(7, 29));
 
-        System.out.println(timeInWords(3, 0));
-        System.out.println(timeInWords(3, 15));
-        System.out.println(timeInWords(3, 45));
-        System.out.println(timeInWords(3, 1));
-        System.out.println(timeInWords(3, 59));
-        System.out.println(timeInWords(3, 10));
 
-        System.out.println(timeInWords(3, 22));
-        System.out.println(timeInWords(3, 55));
-        System.out.println(timeInWords(3, 38));
-        System.out.println(timeInWords(3, 47));
-        System.out.println(timeInWords(3, 59));
-        System.out.println(timeInWords(7, 29));
+        System.out.println(alternate("beabeefeab"));
 
+
+        System.out.println(alternate("uyetuppelecblwipdsqabzsvyfaezeqhpnalahnpkdbhzjglcuqfjnzpmbwprelbayyzovkhacgrglrdpmvaexkgertilnfooeazvulykxypsxicofnbyivkthovpjzhpohdhuebazlukfhaavfsssuupbyjqdxwwqlicbjirirspqhxomjdzswtsogugmbnslcalcfaxqmionsxdgpkotffycphsewyqvhqcwlufekxwoiudxjixchfqlavjwhaennkmfsdhigyeifnoskjbzgzggsmshdhzagpznkbahixqgrdnmlzogprctjggsujmqzqknvcuvdinesbwpirfasnvfjqceyrkknyvdritcfyowsgfrevzon"));
 
     }
 }
