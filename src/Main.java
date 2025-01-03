@@ -623,6 +623,24 @@ public class Main {
         return true;
     }
 
+    //HackerRank HackerRank in a String! problem solution
+    public static String hackerrankInString(String s) {
+        String hackerrankString = "hackerrank";
+        int curPos = 0;
+        boolean found = false;
+        for (int i = 0; i < hackerrankString.length() - 1; i++) {
+            char curChar = hackerrankString.charAt(i);
+            found = false;
+            while (!found && curPos < s.length()) {
+                if (s.charAt(curPos) == curChar) {
+                    found = true;
+                }
+                curPos++;
+            }
+        }
+        return found ? "YES" : "NO";
+    }
+
 
     public static void main(String[] args) {
 
@@ -770,10 +788,13 @@ public class Main {
 //        System.out.println(timeInWords(7, 29));
 
 
-        System.out.println(alternate("beabeefeab"));
+//        System.out.println(alternate("beabeefeab"));
+//
+//
+//        System.out.println(alternate("uyetuppelecblwipdsqabzsvyfaezeqhpnalahnpkdbhzjglcuqfjnzpmbwprelbayyzovkhacgrglrdpmvaexkgertilnfooeazvulykxypsxicofnbyivkthovpjzhpohdhuebazlukfhaavfsssuupbyjqdxwwqlicbjirirspqhxomjdzswtsogugmbnslcalcfaxqmionsxdgpkotffycphsewyqvhqcwlufekxwoiudxjixchfqlavjwhaennkmfsdhigyeifnoskjbzgzggsmshdhzagpznkbahixqgrdnmlzogprctjggsujmqzqknvcuvdinesbwpirfasnvfjqceyrkknyvdritcfyowsgfrevzon"));
 
-
-        System.out.println(alternate("uyetuppelecblwipdsqabzsvyfaezeqhpnalahnpkdbhzjglcuqfjnzpmbwprelbayyzovkhacgrglrdpmvaexkgertilnfooeazvulykxypsxicofnbyivkthovpjzhpohdhuebazlukfhaavfsssuupbyjqdxwwqlicbjirirspqhxomjdzswtsogugmbnslcalcfaxqmionsxdgpkotffycphsewyqvhqcwlufekxwoiudxjixchfqlavjwhaennkmfsdhigyeifnoskjbzgzggsmshdhzagpznkbahixqgrdnmlzogprctjggsujmqzqknvcuvdinesbwpirfasnvfjqceyrkknyvdritcfyowsgfrevzon"));
+        System.out.println(hackerrankInString("hhaacckkekraraannk"));
+        System.out.println(hackerrankInString("rhbaasdndfsdskgbfefdbrsdfhuyatrjtcrtyytktjjt"));
 
     }
 }
