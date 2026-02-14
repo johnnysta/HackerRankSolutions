@@ -642,6 +642,36 @@ public class Main {
     }
 
 
+    //HackerRank "Weighted Uniform Strings" problem solution
+    public static List<String> weightedUniformStrings(String s, List<Integer> queries) {
+
+        Map<Character, Integer> charWeights = new HashMap<>();
+        Set<Integer> substringWeights = new HashSet<>();
+        List<String> results = new ArrayList<>();
+
+        for (char c = 'a'; c <= 'z'; c++) {
+            charWeights.put(c, c - 'a' + 1);
+        }
+
+        int i = 0;
+        int substringWeight = 0;
+        while (i < s.length()) {
+            substringWeight += charWeights.get(s.charAt(i));
+            substringWeights.add(substringWeight);
+            if ((i + 1 < s.length()) && (s.charAt(i) != s.charAt(i + 1))) {
+                substringWeight = 0;
+            }
+            i++;
+        }
+
+        for (int i1 = 0; i1 < queries.size(); i1++) {
+            results.add(substringWeights.contains(queries.get(i1)) ? "Yes" : "No");
+        }
+
+        return results;
+    }
+
+
     public static void main(String[] args) {
 
 //        Integer[] inputArray1 = {3, 2, 1, 2, 3};
@@ -793,8 +823,28 @@ public class Main {
 //
 //        System.out.println(alternate("uyetuppelecblwipdsqabzsvyfaezeqhpnalahnpkdbhzjglcuqfjnzpmbwprelbayyzovkhacgrglrdpmvaexkgertilnfooeazvulykxypsxicofnbyivkthovpjzhpohdhuebazlukfhaavfsssuupbyjqdxwwqlicbjirirspqhxomjdzswtsogugmbnslcalcfaxqmionsxdgpkotffycphsewyqvhqcwlufekxwoiudxjixchfqlavjwhaennkmfsdhigyeifnoskjbzgzggsmshdhzagpznkbahixqgrdnmlzogprctjggsujmqzqknvcuvdinesbwpirfasnvfjqceyrkknyvdritcfyowsgfrevzon"));
 
-        System.out.println(hackerrankInString("hhaacckkekraraannk"));
-        System.out.println(hackerrankInString("rhbaasdndfsdskgbfefdbrsdfhuyatrjtcrtyytktjjt"));
+//        System.out.println(hackerrankInString("hhaacckkekraraannk"));
+//        System.out.println(hackerrankInString("rhbaasdndfsdskgbfefdbrsdfhuyatrjtcrtyytktjjt"));
+
+
+//        Integer[] queries = {9, 7, 8, 12, 5};
+//        String input = "aaabbbbcccddd";
+//        for (String s : weightedUniformStrings(input, Arrays.asList(queries))) {
+//            System.out.println(s);
+//        }
+
+//        Integer[] queries = {1, 3, 12, 5, 9, 10};
+//        String input = "abccddde";
+//        for (String s : weightedUniformStrings(input, Arrays.asList(queries))) {
+//            System.out.println(s);
+//        }
+
+        Integer[] queries = {1, 7, 5, 4, 15};
+        String input = "abbcccdddd";
+        for (String s : weightedUniformStrings(input, Arrays.asList(queries))) {
+            System.out.println(s);
+        }
+
 
     }
 }
