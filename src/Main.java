@@ -658,7 +658,7 @@ public class Main {
         while (i < s.length()) {
             substringWeight += charWeights.get(s.charAt(i));
             substringWeights.add(substringWeight);
-            if ((i + 1 < s.length()) && (s.charAt(i) != s.charAt(i + 1))) {
+            if ((i + 1 < s.length()) && (s.charAt(i) !=  s.charAt(i + 1))) {
                 substringWeight = 0;
             }
             i++;
