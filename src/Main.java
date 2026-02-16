@@ -671,6 +671,20 @@ public class Main {
         return results;
     }
 
+    //HackerRank "Pangrams" problem solution
+    public static String pangrams(String s) {
+
+        String lowerCaseS = s.toLowerCase();
+        for (char c = 'a'; c <= 'z'; c++) {
+            if (! lowerCaseS.contains(String.valueOf(c))){
+                return "not panagram";
+            }
+        }
+
+        return "panagram";
+
+    }
+
 
     public static void main(String[] args) {
 
@@ -839,12 +853,15 @@ public class Main {
 //            System.out.println(s);
 //        }
 
-        Integer[] queries = {1, 7, 5, 4, 15};
-        String input = "abbcccdddd";
-        for (String s : weightedUniformStrings(input, Arrays.asList(queries))) {
-            System.out.println(s);
-        }
+//        Integer[] queries = {1, 7, 5, 4, 15};
+//        String input = "abbcccdddd";
+//        for (String s : weightedUniformStrings(input, Arrays.asList(queries))) {
+//            System.out.println(s);
+//        }
 
+
+        System.out.println(pangrams("We promptly judged antique ivory buckles for the next prize"));
+        System.out.println(pangrams("We promptly judged antique ivory buckles for the prize"));
 
     }
 }
