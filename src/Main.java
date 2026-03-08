@@ -686,6 +686,19 @@ public class Main {
     }
 
 
+    //HackerRank "Mars Exploration" problem solution
+    public static int marsExploration(String s) {
+        final String reference = "SOS";
+        int differences = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) != reference.charAt((i%3))) {
+                differences++;
+            }
+        }
+        return differences;
+    }
+
+
     public static void main(String[] args) {
 
 //        Integer[] inputArray1 = {3, 2, 1, 2, 3};
@@ -860,8 +873,12 @@ public class Main {
 //        }
 
 
-        System.out.println(pangrams("We promptly judged antique ivory buckles for the next prize"));
-        System.out.println(pangrams("We promptly judged antique ivory buckles for the prize"));
+//        System.out.println(pangrams("We promptly judged antique ivory buckles for the next prize"));
+//        System.out.println(pangrams("We promptly judged antique ivory buckles for the prize"));
+
+        System.out.println(marsExploration("SOSSPSSQSSOR"));
+        System.out.println(marsExploration("SOSSOT"));
+        System.out.println(marsExploration("SOSSOSSOS"));
 
     }
 }
